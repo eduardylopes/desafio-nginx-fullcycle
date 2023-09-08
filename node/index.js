@@ -2,7 +2,7 @@ const express = require('express');
 const mysql = require('mysql');
 
 const app = express();
-const port = 3000;
+const port = 80;
 
 const dbConfig = {
   host: 'db',
@@ -12,6 +12,11 @@ const dbConfig = {
 };
 
 const conn = mysql.createConnection(dbConfig);
+
+const createTableSql =
+  'CREATE TABLE IF NOT EXISTS peoples (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255))';
+
+conn.query(createTableSql);
 
 app.use(express.json());
 
